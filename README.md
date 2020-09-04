@@ -1,0 +1,2 @@
+# Djangor
+django project demo
