@@ -1,0 +1,12 @@
+[Unit]
+# 描述
+Description= djangor service daemon
+After=network.target
+
+[Service]
+# 服务启动的命令
+ExecStart=/data/ops/djangor/venv/bin/uwsgi --die-on-term --ini /data/ops/djangor/conf/uwsgi.ini
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=control-group
+Restart=on-failure
+RestartSec=15s
