@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from djangor.utils.login import ThirdPartyView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', ThirdPartyView.as_view({"post":"post"})),
 ]
