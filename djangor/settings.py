@@ -20,6 +20,8 @@ from djangor.config import Mysql, DEBUG
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+#添加工程导包路径
+sys.path.insert(0,os.path.join(BASE_DIR,"djangor"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',  # 跨域支持
+    "books.apps.BooksConfig",
 ]
 
 MIDDLEWARE = [
@@ -146,6 +149,7 @@ REST_FRAMEWORK = {
     # 认证处理方式
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'djangor.utils.auth.ApiAuthentication',  # 自定义认证
+        'djangor.utils.auth.ThirdPartyAuthentication',  # 自定义认证
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',  # JWT认证
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
