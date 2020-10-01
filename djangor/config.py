@@ -17,15 +17,15 @@ filename = {
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 _CONFIG = configparser.ConfigParser()
-_CONFIG.read(os.path.join(BASE_DIR, filename[config_name]), encoding='utf-8')
+_CONFIG.read(os.path.join(BASE_DIR, filename[config_name]), encoding="utf-8")
 
 DEBUG = _CONFIG.getboolean("default", "debug")
 
-DEFAULT_REQUEST_TIMEOUT = _CONFIG.getint('default', 'request_timeout')
-DEFAULT_REQUEST_RETRY = _CONFIG.getint('default', 'request_retry')
-THREAD_NUMBER = _CONFIG.getint('default', 'thread_number')
-MAX_RETRY_TIMES = _CONFIG.getint('default', 'max_retry_times')
-WAIT_TIME = _CONFIG.getint('default', 'wait_time')
+DEFAULT_REQUEST_TIMEOUT = _CONFIG.getint("default", "request_timeout")
+DEFAULT_REQUEST_RETRY = _CONFIG.getint("default", "request_retry")
+THREAD_NUMBER = _CONFIG.getint("default", "thread_number")
+MAX_RETRY_TIMES = _CONFIG.getint("default", "max_retry_times")
+WAIT_TIME = _CONFIG.getint("default", "wait_time")
 
 
 class Mysql:

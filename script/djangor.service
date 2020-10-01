@@ -5,7 +5,7 @@ After=network.target
 
 [Service]
 # 服务启动的命令
-ExecStart=/data/ops/djangor/venv/bin/uwsgi --die-on-term --ini /data/ops/djangor/conf/uwsgi.ini
+ExecStart=/data/ops/Djangor/venv/bin/uwsgi --die-on-term --ini /data/ops/Djangor/conf/uwsgi.ini
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=control-group
 Restart=on-failure
