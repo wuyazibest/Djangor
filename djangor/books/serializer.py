@@ -7,21 +7,31 @@
 # @Desc   :
 import json
 
+from rest_framework import serializers
+
 from .models import *
 from djangor.utils import BaseSerializer, ChoiceField, redis_store
 
 
 class BookSerializer(BaseSerializer):
     publishing = ChoiceField(choices=BookModel.PUBLISHING_CHOICE)
-    
+    # choice 对应的中文方法二，需要定义 get_kind_display_2 函数
+    kind_display_2 = serializers.SerializerMethodField()
+    # choice 对应的中文方法三 ，需要DRF (3.6.3) 以后支持
+    kind_display_3 = serializers.CharField(source="get_kind_display")
+
     class Meta:
         model = BookModel
         exclude = ["is_deleted"]
-    
+
+    def get_kind_display_2(self, obj):
+        return obj.get_kind_display()
+
     def to_representation(self, instance):
         """Convert `username` to lowercase."""
         ret = super().to_representation(instance)
-        ret["kind_display"] = {x[0]: x[1] for x in BookKind.choices}.get(instance.kind)
+        # choice 对应的中文方法一
+        ret["kind_display_1"] = {x[0]: x[1] for x in BookKind.choices}.get(instance.kind)
         return ret
 
 

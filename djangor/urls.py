@@ -20,6 +20,6 @@ from djangor.utils.login import ThirdPartyView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', ThirdPartyView.as_view({"post":"post"})),
+    path('login/', ThirdPartyView.as_view({"post": "post"})),
     path('books/', include("books.urls")),
-]
+    ]
