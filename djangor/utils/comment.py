@@ -39,8 +39,8 @@ class PlusException(Exception):
 
 
 class Redis(object):
-    def __init__(self, host='localhost', port=6379, db=0, decode_response=True, long=False, **kwargs):
-        self.__kw = dict(host=host, port=port, db=db, decode_response=decode_response, **kwargs)
+    def __init__(self, host='localhost', port=6379, db=0, decode_responses=True, long=False, **kwargs):
+        self.__kw = dict(host=host, port=port, db=db, decode_responses=decode_responses, **kwargs)
         self.long = long
         if self.long:
             connection_pool = redis.ConnectionPool(**self.__kw)
@@ -62,11 +62,11 @@ class Redis(object):
         return _
 
 
-redis_store = Redis(host=config.Redis.host, port=config.Redis.port, db=4, long=True)  # type: redis.Redis
+redis_store = Redis(host=config.RedisConf.host, port=config.RedisConf.port, db=config.RedisConf.db2, long=True)  # type: redis.Redis
 
 
 def redis_conn(db=None) -> redis.Redis:
-    return Redis(host=config.Redis.host, port=config.Redis.port, db=db or config.Redis.db)
+    return Redis(host=config.RedisConf.host, port=config.RedisConf.port, db=db or config.RedisConf.db1)
 
 
 class Pager(object):

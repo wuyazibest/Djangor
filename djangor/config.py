@@ -28,7 +28,7 @@ MAX_RETRY_TIMES = _CONFIG.getint("default", "max_retry_times")
 WAIT_TIME = _CONFIG.getint("default", "wait_time")
 
 
-class Mysql:
+class MysqlConf:
     host = _CONFIG.get("database", "host")
     port = _CONFIG.getint("database", "port")
     user = _CONFIG.get("database", "user")
@@ -41,8 +41,9 @@ class Mysql:
     pool_size = _CONFIG.getint("database", "pool_size")
 
 
-class Redis:
+class RedisConf:
     host = _CONFIG.get("redis", "host")
     port = _CONFIG.getint("redis", "port")
-    db = _CONFIG.getint("redis", "db")
+    db1 = _CONFIG.getint("redis", "db1")
+    db2 = _CONFIG.getint("redis", "db2")
     expires = _CONFIG.getint("redis", "expires")
